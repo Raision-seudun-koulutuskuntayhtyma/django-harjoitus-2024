@@ -1,0 +1,9 @@
+<h1>{{kysymys.teksti}}</h1>
+
+<ul>
+{% for vaihtoehto in kysymys.vaihtoehto_set.all %}
+    <li>{{vaihtoehto.teksti}} -- {{vaihtoehto.ääniä}} ääntä</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'kysely:näytä' kysymys.id %}">Äänestä uudelleen?</a>

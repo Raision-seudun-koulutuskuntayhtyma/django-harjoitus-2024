@@ -1,6 +1,17 @@
-<h1>{{ kysymys.teksti }}</h1>
-<ul>
-{% for valinta in kysymys.vaihtoehto_set.all %}
-    <li>{{ valinta.teksti }}</li>
-{% endfor %}
-</ul>
+<form action="{% url 'kysely:äänestä' kysymys.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ kysymys.teksti }}</h1></legend>
+        {% if virheviesti %}<p><strong>{{virheviesti}}</strong></p>{% endif %}
+        {% for valinta in kysymys.vaihtoehto_set.all %}
+            <input
+                type="radio"
+                name="valittu"
+                id="vaihtoeht{{forloop.counter}}"
+                value="{{valinta.id}}">
+            <label for="vaihtoeht{{forloop.counter}}">{{valinta.teksti}}</label>
+            <br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Äänestä">
+</form>
