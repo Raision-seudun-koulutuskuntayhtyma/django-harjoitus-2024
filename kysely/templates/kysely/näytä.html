@@ -1,0 +1,6 @@
+<h1>{{ kysymys.teksti }}</h1>
+<ul>
+{% for valinta in kysymys.vaihtoehto_set.all %}
+    <li>{{ valinta.teksti }}</li>
+{% endfor %}
+</ul>
