@@ -21,5 +21,5 @@ import kysely.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("kyselyt/", include(kysely.urls)),
+    path("", include(kysely.urls)),
 ]
