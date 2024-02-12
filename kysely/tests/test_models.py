@@ -3,7 +3,7 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 
-from .models import Kysymys
+from ..models import Kysymys
 
 
 class KysymysModelTests(TestCase):
