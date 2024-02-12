@@ -1,0 +1,7 @@
+body {
+    background: hsl(109, 100%, 95%) url("kuvat/tausta.png");
+}
+
+li a {
+    color: green;
+}

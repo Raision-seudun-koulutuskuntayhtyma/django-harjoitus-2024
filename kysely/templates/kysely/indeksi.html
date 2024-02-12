@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'kysely/tyylit.css' %}">
+
 {% if kysymykset %}
     <ul>
     {% for kysym in kysymykset %}
