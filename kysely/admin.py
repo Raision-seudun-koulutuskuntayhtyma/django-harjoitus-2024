@@ -15,6 +15,7 @@ class KysymysAdmin(admin.ModelAdmin):
         ("Sisältö", {"fields": ["teksti"]}),
     ]
     inlines = [VastausvaihtoehtoInline]
+    list_display = ["teksti", "julkaisupvm", "onko_julkaistu_lähiaikoina"]
 
 
 @admin.register(Vaihtoehto)

@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib import admin
 from django.db import models
 from django.utils import timezone
 
@@ -15,6 +16,11 @@ class Kysymys(models.Model):
     def __str__(self):
         return self.teksti
 
+    @admin.display(
+        boolean=True,
+        ordering="julkaisupvm",
+        description="Julkaistu lähiaikoina?",
+    )
     def onko_julkaistu_lähiaikoina(self):
         nyt = timezone.now()
         return nyt - datetime.timedelta(days=1) <= self.julkaisupvm <= nyt
