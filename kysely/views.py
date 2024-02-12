@@ -40,6 +40,10 @@ class NäytäNäkymä(generic.DetailView):
     model = Kysymys
     template_name = "kysely/näytä.html"
 
+    def get_queryset(self):
+        nyt = timezone.now()
+        return Kysymys.objects.filter(julkaisupvm__lte=nyt)
+
 
 class TuloksetNäkymä(generic.DetailView):
     model = Kysymys

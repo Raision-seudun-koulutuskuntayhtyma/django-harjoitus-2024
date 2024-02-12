@@ -66,3 +66,21 @@ class IndeksiNäkymänTestit(TestCase):
             vastaus.context["kysymykset"],
             [kysymys2, kysymys1],
         )
+
+
+class NäytäNäkymänTestit(TestCase):
+    def test_tuleva_kysymys(self):
+        tuleva_kysymys = luo_kysymys("Tuleva kysymys", days=5)
+        osoite = reverse("kysely:näytä", args=(tuleva_kysymys.id,))
+
+        vastaus = self.client.get(osoite)
+
+        self.assertEqual(vastaus.status_code, 404)  # HTTP-koodi 404 = ei löydy
+
+    def test_mennyt_kysymys(self):
+        mennyt_kysymys = luo_kysymys("Mennyt kysymys", days=-5)
+        osoite = reverse("kysely:näytä", args=(mennyt_kysymys.id,))
+
+        vastaus = self.client.get(osoite)
+
+        self.assertContains(vastaus, mennyt_kysymys.teksti)
