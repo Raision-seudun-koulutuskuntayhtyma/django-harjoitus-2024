@@ -15,7 +15,7 @@ def luo_kysymys(teksti, days):
     )
 
 
-class KysymysIndeksiNäkymäTests(TestCase):
+class IndeksiNäkymänTestit(TestCase):
     def test_ei_kysymyksiä(self):
         vastaus = self.client.get(reverse("kysely:indeksi"))
 

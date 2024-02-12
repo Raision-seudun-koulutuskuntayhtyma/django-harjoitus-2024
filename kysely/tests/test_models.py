@@ -6,7 +6,7 @@ from django.utils import timezone
 from ..models import Kysymys
 
 
-class KysymysModelTests(TestCase):
+class KysymysModelinTestit(TestCase):
     def test_onko_julkaistu_lähiaikoina_tulevaisuuden_kysymyksellä(self):
         """
         onko_julkaistu_lähiaikoina on False jos kysymys tulevaisuudessa.
