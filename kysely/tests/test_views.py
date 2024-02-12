@@ -19,7 +19,7 @@ class IndeksiNäkymänTestit(TestCase):
     def test_ei_kysymyksiä(self):
         vastaus = self.client.get(reverse("kysely:indeksi"))
 
-        self.assertEqual(vastaus.status_code, 200)
+        self.assertEqual(vastaus.status_code, 200)  # HTTP-koodi 200 = OK
         self.assertContains(vastaus, "Ei kyselyitä saatavilla.")
         self.assertQuerySetEqual(vastaus.context["kysymykset"], [])
 
@@ -28,6 +28,7 @@ class IndeksiNäkymänTestit(TestCase):
 
         vastaus = self.client.get(reverse("kysely:indeksi"))
 
+        self.assertContains(vastaus, kysymys.teksti)
         self.assertQuerySetEqual(
             vastaus.context["kysymykset"],
             [kysymys],
@@ -42,11 +43,12 @@ class IndeksiNäkymänTestit(TestCase):
         self.assertQuerySetEqual(vastaus.context["kysymykset"], [])
 
     def test_tuleva_ja_mennyt_kysymys(self):
-        kysymys = luo_kysymys("Mennyt kysymys.", days=-30)
+        kysymys = luo_kysymys("Mennyt kysymys", days=-30)
         luo_kysymys("Tuleva kysymys", days=30)
 
         vastaus = self.client.get(reverse("kysely:indeksi"))
 
+        self.assertContains(vastaus, "Mennyt kysymys")
         self.assertQuerySetEqual(
             vastaus.context["kysymykset"],
             [kysymys],
@@ -58,6 +60,8 @@ class IndeksiNäkymänTestit(TestCase):
 
         vastaus = self.client.get(reverse("kysely:indeksi"))
 
+        self.assertContains(vastaus, "Mennyt kysymys 1")
+        self.assertContains(vastaus, "Mennyt kysymys 2")
         self.assertQuerySetEqual(
             vastaus.context["kysymykset"],
             [kysymys2, kysymys1],
