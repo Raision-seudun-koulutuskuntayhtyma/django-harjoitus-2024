@@ -37,6 +37,7 @@ class KysymysIndeksiNäkymäTests(TestCase):
         luo_kysymys("Tuleva kysymys", days=30)
 
         vastaus = self.client.get(reverse("kysely:indeksi"))
+
         self.assertContains(vastaus, "Ei kyselyitä saatavilla.")
         self.assertQuerySetEqual(vastaus.context["kysymykset"], [])
 
@@ -45,6 +46,7 @@ class KysymysIndeksiNäkymäTests(TestCase):
         luo_kysymys("Tuleva kysymys", days=30)
 
         vastaus = self.client.get(reverse("kysely:indeksi"))
+
         self.assertQuerySetEqual(
             vastaus.context["kysymykset"],
             [kysymys],
