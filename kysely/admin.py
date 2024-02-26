@@ -10,6 +10,7 @@ class VastausvaihtoehtoInline(admin.TabularInline):
 
 @admin.register(Kysymys)
 class KysymysAdmin(admin.ModelAdmin):
+    date_hierarchy = "julkaisupvm"
     fieldsets = [
         ("Päivämäärätiedot", {"fields": ["julkaisupvm"]}),
         ("Sisältö", {"fields": ["teksti"]}),
