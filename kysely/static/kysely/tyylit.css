@@ -5,3 +5,22 @@ body {
 li a {
     color: green;
 }
+
+nav ul {
+    background: hsla(64, 93%, 61%, 0.366);
+    margin: 0px;
+    padding: 0.5ex 2ex;
+}
+
+nav li {
+    display: inline;
+    font-size: 85%;
+}
+
+nav li:before {
+    content: "[";
+}
+
+nav li:after {
+    content: "]";
+}

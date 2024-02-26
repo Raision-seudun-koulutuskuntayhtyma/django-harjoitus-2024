@@ -5,6 +5,13 @@
 </head>
 
 <body>
+<nav class="nav">
+    <ul>
+        <li><a href="{% url 'kysely:indeksi' %}">Etusivu</a></li>
+        <li><a href="{% url 'admin:index' %}">Hallinta</a></li>
+    </ul>
+</nav>
+
 {% block content %}
 {% endblock %}
 </body>
