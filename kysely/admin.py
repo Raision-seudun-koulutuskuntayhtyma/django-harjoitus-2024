@@ -23,3 +23,4 @@ class KysymysAdmin(admin.ModelAdmin):
 class VaihtoehtoAdmin(admin.ModelAdmin):
     list_display = ["kysymys", "teksti"]
     search_fields = ["teksti", "kysymys__teksti"]
+    autocomplete_fields = ["kysymys"]
