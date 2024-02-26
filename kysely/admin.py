@@ -16,8 +16,10 @@ class KysymysAdmin(admin.ModelAdmin):
     ]
     inlines = [VastausvaihtoehtoInline]
     list_display = ["teksti", "julkaisupvm", "onko_julkaistu_lähiaikoina"]
+    search_fields = ["teksti"]
 
 
 @admin.register(Vaihtoehto)
 class VaihtoehtoAdmin(admin.ModelAdmin):
     list_display = ["kysymys", "teksti"]
+    search_fields = ["teksti", "kysymys__teksti"]
